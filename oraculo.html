@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="oraculo.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oráculo - Biblioteca de Códigos</title>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Oráculo</h2>
+        </div>
+        <div class="sidebar-menu">
+            <div class="menu-item active" onclick="showLanguage('HTML')">
+                <i class="fas fa-code"></i> HTML
+            </div>
+            <div class="menu-item" onclick="showLanguage('CSS')">
+                <i class="fas fa-code"></i> CSS
+            </div>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Pesquisar..." oninput="searchNotes()">
+                <i class="fas fa-search"></i>
+            </div>
+        </div>
+        <div class="content">
+            <div class="page-header">
+                <h1 id="language-title">HTML</h1>
+                <button class="btn btn-primary" onclick="openModal()">Adicionar Nota</button>
+            </div>
+            <div class="notes-container" id="notes-container">
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Adicionar Nota</h3>
+                <button class="x" onclick="closeModal()">X</button> 
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="note-title">Título</label>
+                    <input type="text" id="note-title" placeholder="Título da nota">
+                </div>
+                <div class="form-group">
+                    <label for="note-content">Conteúdo</label>
+                    <textarea id="note-content" placeholder="Conteúdo da nota"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal()">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveNote()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script externo -->
+    <script src="oraculo.js"></script>
+</body>
+</html>
