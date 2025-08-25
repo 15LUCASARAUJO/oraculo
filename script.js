@@ -46,7 +46,7 @@ function renderNotes() {
                     <button class="action-btn-danger" onclick="deleteNote(${index})">Excluir</button>
                 </div>
             </div>
-            <div class="note-content">${escapeHtml(note.content)}</div>
+            <div class="note-content">${note.content}</div>
         `;
         container.appendChild(noteCard);
     });
@@ -64,14 +64,14 @@ function closeModal() {
 
 function clearModalFields() {
     document.getElementById('note-title').value = '';
-    document.getElementById('note-content').value = '';
+    document.getElementById('note-content').innerHTML = ''; // Limpar conteúdo
 }
 
 function saveNote() {
     const title = document.getElementById('note-title').value;
-    const content = document.getElementById('note-content').value;
+    const content = document.getElementById('note-content').innerHTML; // Obter o HTML do conteúdo
     if (title && content) {
-        notes[currentLanguage].push({ title, content });
+        notes[currentLanguage].push({ title, content }); // Salvar a nota
         closeModal();
         renderNotes();
     } else {
@@ -82,7 +82,7 @@ function saveNote() {
 function editNote(index) {
     const note = notes[currentLanguage][index];
     document.getElementById('note-title').value = note.title;
-    document.getElementById('note-content').value = note.content;
+    document.getElementById('note-content').innerHTML = note.content; // Carregar conteúdo
     openModal();
     deleteNote(index);
 }
@@ -113,10 +113,21 @@ function searchNotes() {
                     <button class="action-btn-danger" onclick="deleteNote(${index})">Excluir</button>
                 </div>
             </div>
-            <div class="note-content">${escapeHtml(note.content)}</div>
+            <div class="note-content">${note.content}</div>
         `;
         container.appendChild(noteCard);
     });
+}
+
+function selectTextColor() {
+    const selectedText = window.getSelection().toString();
+    
+    if (selectedText) {
+        const coloredText = `<span style="color: #000000;">${selectedText}</span>`; // Cor alterada
+        document.execCommand('insertHTML', false, coloredText); // Insere o texto colorido
+    } else {
+        alert('Por favor, selecione uma palavra ou frase para mudar a cor.');
+    }
 }
 
 loadNotes();
