@@ -23,6 +23,15 @@ function showLanguage(language) {
     renderNotes();
 }
 
+function escapeHtml(unsafe) {
+    return unsafe
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
 function renderNotes() {
     const container = document.getElementById('notes-container');
     container.innerHTML = '';
@@ -31,13 +40,13 @@ function renderNotes() {
         noteCard.className = 'note-card';
         noteCard.innerHTML = `
             <div class="note-header">
-                <div class="note-title">${note.title}</div>
+                <div class="note-title">${escapeHtml(note.title)}</div>
                 <div class="note-actions">
                     <button class="action-btn" onclick="editNote(${index})">Editar</button>
                     <button class="action-btn-danger" onclick="deleteNote(${index})">Excluir</button>
                 </div>
             </div>
-            <div class="note-content">${note.content}</div>
+            <div class="note-content">${escapeHtml(note.content)}</div>
         `;
         container.appendChild(noteCard);
     });
@@ -62,7 +71,7 @@ function saveNote() {
     const title = document.getElementById('note-title').value;
     const content = document.getElementById('note-content').value;
     if (title && content) {
-        notes[currentLanguage].push({ title, content });
+        notes[currentLanguage].push({ title: escapeHtml(title), content: escapeHtml(content) });
         closeModal();
         renderNotes();
     } else {
@@ -98,13 +107,13 @@ function searchNotes() {
         noteCard.className = 'note-card';
         noteCard.innerHTML = `
             <div class="note-header">
-                <div class="note-title">${note.title}</div>
+                <div class="note-title">${escapeHtml(note.title)}</div>
                 <div class="note-actions">
                     <button class="action-btn" onclick="editNote(${index})">Editar</button>
                     <button class="action-btn-danger" onclick="deleteNote(${index})">Excluir</button>
                 </div>
             </div>
-            <div class="note-content">${note.content}</div>
+            <div class="note-content">${escapeHtml(note.content)}</div>
         `;
         container.appendChild(noteCard);
     });
