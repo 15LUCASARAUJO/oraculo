@@ -51,8 +51,9 @@
                 </div>
                 <div class="form-group">
                     <label for="note-content">Conteúdo</label>
-                    <textarea id="note-content" placeholder="Conteúdo da nota"></textarea>
+                    <div id="note-content" contenteditable="true" placeholder="Conteúdo da nota" oninput="updatePreview()" style="border: 1px solid #ccc; padding: 0.5rem; min-height: 100px;"></div>
                 </div>
+                <button class="btn" id="select-color-btn" onclick="selectTextColor()">Marcar</button>
             </div>
             <div class="modal-footer">
                 <button class="btn" onclick="closeModal()">Cancelar</button>
