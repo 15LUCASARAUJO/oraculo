@@ -71,7 +71,6 @@ function saveNote() {
     const title = document.getElementById('note-title').value;
     const content = document.getElementById('note-content').value;
     if (title && content) {
-        // Salvar o título e conteúdo originais
         notes[currentLanguage].push({ title, content });
         closeModal();
         renderNotes();
@@ -120,5 +119,4 @@ function searchNotes() {
     });
 }
 
-// Carregar notas ao iniciar
 loadNotes();
