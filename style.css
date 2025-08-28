@@ -1,12 +1,5 @@
 :root {
-    --primary-color: #3a0ca3;
-    --secondary-color: #4361ee;
-    --accent-color: #4cc9f0;
-    --dark-color: #1a1a2e;
-    --light-color: #f8f9fa;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --danger-color: #e74c3c;
+    --primary-color: #135e32;
     --sidebar-width: 250px;
     --header-height: 60px;
 }
@@ -20,7 +13,7 @@
 
 body {
     background-color: #212529;
-    color: #F8F9FA;
+    color: #faf8f8;
     display: flex;
     min-height: 100vh;
 }
@@ -34,6 +27,9 @@ body {
     overflow-y: auto;
     transition: transform 0.3s ease;
     z-index: 100;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .sidebar-header {
@@ -51,6 +47,7 @@ body {
 
 .sidebar-menu {
     padding: 1rem 0;
+    flex-grow: 1;
 }
 
 .menu-item {
@@ -60,6 +57,11 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
     border-left: 3px solid transparent;
+    user-select: none;
+}
+
+.menu-item.active {
+    background-color: var(--primary-color);
 }
 
 .menu-item:hover {
@@ -103,6 +105,7 @@ body {
     border-radius: 20px;
     outline: none;
     transition: all 0.3s ease;
+    color: #212529;
 }
 
 .search-bar input:focus {
@@ -144,6 +147,8 @@ body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color: #2B3035;
+    color: #faf8f8;
 }
 
 .btn i {
@@ -151,7 +156,7 @@ body {
 }
 
 .btn-primary {
-    background-color: #2B3035;
+    background-color: var(--primary-color);
     color: #faf8f8;
 }
 
@@ -187,6 +192,7 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     color: #faf8f8;
+    word-break: break-word;
 }
 
 .note-actions {
@@ -206,6 +212,7 @@ body {
 .action-btn:hover {
     color: #212529;
 }
+
 .action-btn-danger {
     background: none;
     border: none;
@@ -214,15 +221,16 @@ body {
     font-size: 1rem;
     transition: color 0.3s ease;
 }
+
 .action-btn-danger:hover {
     color: #d3200c; 
 }
-
 
 .note-content {
     padding: 1rem;
     color: #faf8f8;
     line-height: 1.6;
+    word-break: break-word;
 }
 
 .modal {
@@ -288,44 +296,71 @@ body {
     color: #faf8f8;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #212529;
-    border-radius: 5px;
-    outline: none;
-    transition: border-color 0.3s ease;
+.x {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    color: #faf8f8;
+    cursor: pointer;
+    transition: color 0.3s; 
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #212529;
-}
-
-.form-group textarea {
-    resize: vertical;
-    height: 100px;
-}
-
-.modal-footer {
-    padding: 1rem;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.modal-footer .btn {
-    margin-left: 0.5rem;
-}
-.x{
-  background: transparent;
-  border: 0;
-  padding: 0;
-  font: inherit;
-  color: #faf8f8;
-  cursor: pointer;
-  transition: color 0.3s; 
-}
 .x:hover {
-  color: #d3200c; 
+    color: #d3200c; 
+}
+.menu-item {
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+    user-select: none;
+}
+
+.menu-item.active {
+    background-color: var(--primary-color);
+}
+
+.menu-item:hover {
+    background-color: #212529;
+}
+
+.menu-item i {
+    margin-right: 10px;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.menu-item .menu-text {
+    flex-grow: 1;
+    user-select: none;
+    padding-right: 0.5rem;
+}
+
+.menu-item .menu-actions {
+    display: flex;
+    gap: 0.3rem;
+    flex-shrink: 0;
+}
+
+.menu-item .menu-actions button {
+    background: none;
+    border: none;
+    color: #faf8f8;
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0 6px;
+    border-radius: 3px;
+    transition: background-color 0.2s ease;
+}
+
+.menu-item .menu-actions button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-item .menu-actions button.delete-btn:hover {
+    color: var(--danger-color);
 }
