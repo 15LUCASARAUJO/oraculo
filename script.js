@@ -8,6 +8,12 @@ function loadNotes() {
     const savedNotes = localStorage.getItem('oraculoNotes');
     if (savedNotes) {
         const parsed = JSON.parse(savedNotes);
+        // Limpa o objeto notes antes de carregar os dados
+        for (const key in notes) {
+            if (notes.hasOwnProperty(key)) {
+                delete notes[key];
+            }
+        }
         for (const key in parsed) {
             if (parsed.hasOwnProperty(key)) {
                 notes[key] = parsed[key];
