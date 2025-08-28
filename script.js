@@ -201,6 +201,7 @@ function addNewTheme() {
     addThemeToSidebar(newTheme);
     input.value = '';
     showLanguage(newTheme);
+    saveToLocalStorage(); // Salva o novo tema no localStorage
 }
 
 function addThemeToSidebar(theme) {
@@ -246,12 +247,14 @@ function editTheme(event, oldTheme) {
     loadThemes();
     renderNotes();
     updateUIState();
+    saveToLocalStorage(); // Salva as alterações após renomear tema
 }
 
 function deleteTheme(event, theme) {
     event.stopPropagation();
     if (!confirm(`Tem certeza que deseja excluir o tema "${theme}" e todas as suas notas?`)) return;
     delete notes[theme];
+    saveToLocalStorage(); // Salva as alterações no localStorage após exclusão
     if (currentLanguage === theme) {
         currentLanguage = null;
         document.getElementById('language-title').innerText = 'Nenhum tema selecionado';
