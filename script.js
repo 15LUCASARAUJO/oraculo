@@ -64,14 +64,14 @@ function closeModal() {
 
 function clearModalFields() {
     document.getElementById('note-title').value = '';
-    document.getElementById('note-content').innerHTML = ''; // Limpar conteúdo
+    document.getElementById('note-content').innerHTML = '';
 }
 
 function saveNote() {
     const title = document.getElementById('note-title').value;
-    const content = document.getElementById('note-content').innerHTML; // Obter o HTML do conteúdo
+    const content = document.getElementById('note-content').innerHTML; 
     if (title && content) {
-        notes[currentLanguage].push({ title, content }); // Salvar a nota
+        notes[currentLanguage].push({ title, content });
         closeModal();
         renderNotes();
     } else {
@@ -82,7 +82,7 @@ function saveNote() {
 function editNote(index) {
     const note = notes[currentLanguage][index];
     document.getElementById('note-title').value = note.title;
-    document.getElementById('note-content').innerHTML = note.content; // Carregar conteúdo
+    document.getElementById('note-content').innerHTML = note.content; 
     openModal();
     deleteNote(index);
 }
@@ -123,8 +123,8 @@ function selectTextColor() {
     const selectedText = window.getSelection().toString();
     
     if (selectedText) {
-        const coloredText = `<span style="color: #000000;">${selectedText}</span>`; // Cor alterada
-        document.execCommand('insertHTML', false, coloredText); // Insere o texto colorido
+        const coloredText = `<span style="color: #000000;">${selectedText}</span>`; 
+        document.execCommand('insertHTML', false, coloredText);
     } else {
         alert('Por favor, selecione uma palavra ou frase para mudar a cor.');
     }
